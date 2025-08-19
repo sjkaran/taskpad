@@ -1,0 +1,21 @@
+{
+    "tasks": {
+        "2025-08-19": {
+            "1": {
+                "task": "TC record exp 5",
+                "result": "pending",
+                "remark": "pending"
+            },
+            "2": {
+                "task": "Python project assign function.",
+                "result": "pending",
+                "remark": "pending"
+            },
+            "3": {
+                "task": "ML class with understanding.",
+                "result": "pending",
+                "remark": "pending"
+            }
+        }
+    }
+}
