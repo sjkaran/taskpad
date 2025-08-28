@@ -2,7 +2,7 @@ import os
 from datetime import datetime, timedelta
 import json
 
-class taskmanager2:
+class taskmanager1:
     def __init__(self,filename="task2.json"):
         self.filename = filename
         self.ensure_file_exists()
@@ -333,11 +333,3 @@ class taskmanager2:
 if not os.path.exists("task2.json"):
     with open("task2.json","w") as f:
         json.dump({"tasks": {}},f)
-
-if __name__=="__main__":
-    try:
-        taskmanager2 = taskmanager2()
-        taskmanager2.control_unit()
-
-    except Exception as e:
-        print(f"Error starting application: {e}")
