@@ -1,0 +1,16 @@
+{
+    "tasks": {
+        "2025-08-29": {
+            "1": {
+                "task": "pyton project.",
+                "result": "COMPLETED \ud83c\udfaf",
+                "remark": "pending"
+            },
+            "2": {
+                "task": "python ML class.",
+                "result": "pending",
+                "remark": "pending"
+            }
+        }
+    }
+}

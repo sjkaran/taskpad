@@ -2,7 +2,7 @@ import os
 import json
 
 class DataHandler:
-    def __init__(self,filename="task2.json"):
+    def __init__(self,filename="task_base.json"):
         self.filename = filename
         self.ensure_file_exists()
 
@@ -36,7 +36,7 @@ class DataHandler:
             if displays:
                 self.display_data(loaded_data)
             return loaded_data
-        except FileExistsError:
+        except FileNotFoundError:
             print(f"Error: file {self.filename} not found. loc: {self.view_data.__name__} / {self.__class__.__name__}")
             return {"tasks":{}}
         except json.JSONDecodeError:
@@ -57,12 +57,6 @@ class DataHandler:
                 print(f"\nDate: {dates}")
                 for n in data["tasks"][dates]:
                     num = data["tasks"][dates][n]
-                    print(f"{n}. {num['tasks']}\t{num['result']}\n{num['remark']}")
+                    print(f"{n}. {num['task']}\t{num['result']}\n{num['remark']}")
         else:
             print("\nNo task found. start by assigning some tasks!")
-
-
-if __name__=="__main__":
-    dh = DataHandler()
-    dh.display_data(dh.view_data(False))
-    dh.upload_data(dh.view_data(False))
