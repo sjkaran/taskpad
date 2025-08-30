@@ -13,6 +13,13 @@ class TaskClearer:
         pass
 
     def clean_ui_controler(self):
+        def options():
+            print("How you wanna remove the tasks: ")
+            print("1. remove out dated tasks.")
+            print("2. remove completed tasks.")
+            print("3. remove tasks manually.")
+            print("4. go back to menu.")
+
         pass
 
 
