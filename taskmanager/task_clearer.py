@@ -3,6 +3,19 @@ class TaskClearer:
         self.data_handler = data_handler
         self.task_updater = task_updater
 
+    def date_wize_cleaner(self):
+        pass
+
+    def remark_wize_cleaner(self):
+        pass
+
+    def manual_cleaner(self):
+        pass
+
+    def clean_ui_controler(self):
+        pass
+
+
     def clear_task(self):
         # Clear/delete existing tasks with fresh data loading.
 
@@ -49,18 +62,3 @@ class TaskClearer:
             print(f"Task not found: {e}")
         except Exception as e:
             print(f"Error detection in clearing tasks: {e}")
-
-    # def remover(self):
-    #     pass
-    
-    # def remove_out_dated(self):
-    #     pass
-
-    # def remove_by_completed(self):
-    #     pass
-
-    # def manual_remove(self):
-    #     pass
-
-    # def ui(self):
-    #     pass
