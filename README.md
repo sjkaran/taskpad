@@ -1,5 +1,11 @@
 # 🗒️ TaskPad
+
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Offline](https://img.shields.io/badge/Mode-Offline-lightgrey)
+
 **Minimal. Reliable. Offline. Yours.**
+
 
 A minimalist, offline task management tool built in Python, designed to be as simple and reliable as a notepad.
 
@@ -89,7 +95,7 @@ See CONTRIBUTING.md for more details.
 
 ## License
 
-TaskPad is licensed under the MIT License.
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ## Contact
 
