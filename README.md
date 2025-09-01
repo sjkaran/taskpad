@@ -95,7 +95,7 @@ See CONTRIBUTING.md for more details.
 
 ## License
 
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+TaskPad is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
