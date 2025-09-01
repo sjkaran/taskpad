@@ -1,4 +1,5 @@
-# TaskPad
+# 🗒️ TaskPad
+**Minimal. Reliable. Offline. Yours.**
 
 A minimalist, offline task management tool built in Python, designed to be as simple and reliable as a notepad.
 
@@ -92,8 +93,8 @@ TaskPad is licensed under the MIT License.
 
 ## Contact
 
-Have questions or suggestions? Open an issue or reach out at yourusername@example.com.
+Have questions or suggestions? Open an issue or reach out at https://github.com/sjkaran or sjkaran05@gmail.com
 
 ---
 
-*Built with simplicity in mind. Stay productive with TaskPad!*
+*"Your tasks. Your pad. No distractions."*
