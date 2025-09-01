@@ -1,3 +1,4 @@
+from taskmanager import *
 class TaskClearer:
     def __init__(self,data_handler,task_updater):
         self.data_handler = data_handler
@@ -19,8 +20,43 @@ class TaskClearer:
             print("2. remove completed tasks.")
             print("3. remove tasks manually.")
             print("4. go back to menu.")
+            try:
+                inp = input("")
+                return inp
+            except Exception as e:
+                print(f"{e}\nloc: {__class__.__name__}\{options.__name__}")
 
-        pass
+        def final_clean_ui():            
+            while True:
+                try:
+                    ipt = options()
+                    match ipt:
+                        case m if m in ('1','rm out','remove out dated','out'):
+                            print("activate date wize cleaner.")
+                        case m if m in ('2','rm comp','completed','complete'):
+                            print("activate date wize cleaner.")
+                        case m if m in ('3','remove manualy','manualy','rm man'):
+                            print("activate the manual cleaner:")
+                        case m if m in ('4','menu','go','back'):
+                            break
+                except KeyboardInterrupt:
+                    print("Operation canceled by the user. (key board inturupt error)")
+                    break
+                except EOFError:
+                    print("\nInput stream closed (EOFError). Exititng ")
+                    break
+                except Exception as e:
+                    print(f"Error occured {e}\nloc: {__class__.__name__}/{self.clean_ui_controler.__name__}")
+                    break
+        
+        self.data = self.data_handler.view_data(False)
+        if len(self.data["tasks"])<=0:
+            print("- "*10,end="-")
+            print("Assign the task first",end="-")
+            print("- "*10,end="-")
+        else:
+            self.data_handler.display_data(self.data)
+            final_clean_ui()
 
 
     def clear_task(self):
