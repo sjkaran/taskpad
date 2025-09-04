@@ -42,7 +42,7 @@ class UIController:
 
                         case str() if inp=='4' or inp.startswith('cl'):
                             print("\n🧹 CLEAR TASKS:")
-                            self.task_clearer.clear_task()
+                            self.task_clearer.clean_ui_controler()
                         
                         case str() if inp=='5' or inp.startswith('ex'):
                             print("\n🙏 Have a productve day! 🎯")

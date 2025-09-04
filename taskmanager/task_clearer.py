@@ -4,9 +4,26 @@ class TaskClearer:
         self.data_handler = data_handler
         self.task_updater = task_updater
 
-    def date_wize_cleaner(self):
-        pass
-
+    def date_wize_cleaner(self,data):
+        try:
+            inpdate=input("enter the date of which you want to clear all tasks:  ")
+            if len(inpdate)<10:
+                print("enter the date in dd-mm-yyyy format.")
+                return False
+            elif inpdate not in data:
+                print(f"there is no tasks assigned to {inpdate}")
+                return False
+            elif len(data["tasks"][inpdate])>0:
+                del data["tasks"][inpdate]
+                self.data_handler.upload_data(data)
+                print(f"tasks of {inpdate} are successfully cleared...")
+                return True
+            else:
+                print(f"there is no tasks to clean in {inpdate}")
+                return False
+        except Exception as e:
+            print(f"error occured in {__class__.__name__}/{self.date_wize_cleaner.__name__}")
+            return False
     def remark_wize_cleaner(self):
         pass
 
@@ -26,13 +43,19 @@ class TaskClearer:
             except Exception as e:
                 print(f"{e}\nloc: {__class__.__name__}\{options.__name__}")
 
-        def final_clean_ui():            
+        def final_clean_ui(ndata):            
             while True:
                 try:
                     ipt = options()
                     match ipt:
                         case m if m in ('1','rm out','remove out dated','out'):
                             print("activate date wize cleaner.")
+                            date_wise=self.date_wize_cleaner(ndata)
+                            if date_wise:
+                                break
+                            else:
+                                print("try again...")
+
                         case m if m in ('2','rm comp','completed','complete'):
                             print("activate date wize cleaner.")
                         case m if m in ('3','remove manualy','manualy','rm man'):
@@ -56,7 +79,7 @@ class TaskClearer:
             print("- "*10,end="-")
         else:
             self.data_handler.display_data(self.data)
-            final_clean_ui()
+            final_clean_ui(self.data)
 
 
     def clear_task(self):
@@ -105,3 +128,6 @@ class TaskClearer:
             print(f"Task not found: {e}")
         except Exception as e:
             print(f"Error detection in clearing tasks: {e}")
+            
+
+#bug in date wize cleaner.
