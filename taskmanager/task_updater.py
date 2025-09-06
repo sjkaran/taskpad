@@ -67,7 +67,7 @@ class TaskUpdater:
                 try:
                     yn = input("\nIs the task completed (y/n)").strip()
                     if yn.lower().startswith('y'):
-                        data['tasks'][date_key][task_num]['result'] = "COMPLETED 🎯"
+                        data['tasks'][date_key][task_num]['result'] = "COMPLETED"
                         print("Good job! Task marked as completed.")
                         break
                     elif yn.lower().startswith('n'):
