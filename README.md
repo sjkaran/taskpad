@@ -95,7 +95,7 @@ See CONTRIBUTING.md for more details.
 
 ## License
 
-TaskPad is licensed under the [MIT License](LICENSE).
+TaskPad is licensed under the [MIT License](LICENSE.md).
 
 ## Contact
 
