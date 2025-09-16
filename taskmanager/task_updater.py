@@ -37,6 +37,7 @@ class TaskUpdater:
 
         #show current tasks first
         print("\nCurrent tasks:")
+        print("-"*30)
         self.data_handler.display_data(data)
 
         if len(data["tasks"]) ==0:
@@ -65,10 +66,10 @@ class TaskUpdater:
 
             while True:
                 try:
-                    yn = input("\nIs the task completed (y/n)").strip()
+                    yn = input("\nIs the task completed (y/n): ").strip()
                     if yn.lower().startswith('y'):
                         data['tasks'][date_key][task_num]['result'] = "COMPLETED"
-                        print("Good job! Task marked as completed.")
+                        print("Task marked as completed.")
                         break
                     elif yn.lower().startswith('n'):
                         new_remark = input("What is your remark for it: ").strip()
@@ -91,3 +92,9 @@ class TaskUpdater:
 
         except Exception as e:
             print(f"Error updating task : {e}")
+
+
+'''
+* shorten up the indexof function.
+* enable auto update to outdated function.
+'''
