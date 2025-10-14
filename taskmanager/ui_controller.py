@@ -26,7 +26,7 @@ class UIController:
             while True:
                 self.view_option()
                 try:
-                    inp= input("Enter your choice :").strip().lower()
+                    inp= input("Enter your choice : ").strip().lower()
                     match inp:
                         case str() if inp =='1' or inp.startswith('v'):
                             print("\n📃 CURRENT TASKS: ")

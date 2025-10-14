@@ -92,9 +92,3 @@ class TaskUpdater:
 
         except Exception as e:
             print(f"Error updating task : {e}")
-
-
-'''
-* shorten up the indexof function.
-* enable auto update to outdated function.
-'''

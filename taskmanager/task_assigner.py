@@ -37,7 +37,8 @@ class TaskAssigner:
             while True:
                 try:
                     numOfTasks = int(input("Enter the number of tasks you want to assign: "))
-                    if numOfTasks <= 0 or numOfTasks >=10:
+                    if numOfTasks==0: break
+                    elif numOfTasks <= 0 or numOfTasks >=10:
                         print("Please enter a number between 1 and 9.")
                         continue
 
