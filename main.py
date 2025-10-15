@@ -22,7 +22,7 @@ if __name__=="__main__":
     main()
 
 '''
-* add UI.s
+* add UI.
 
 * bug in the update task feature:
     if we update a task to completed mistakenly, it can't be redid as PENDING.
@@ -30,5 +30,4 @@ if __name__=="__main__":
     asking for dates before updating the task.
     should automatically label task as UNCOMPLETED or FAILED if the day of the task passed.
 
-* if the user mistakenly chooses an option there is no coming back, try to take an input q that returns back to the menu. 
 '''
