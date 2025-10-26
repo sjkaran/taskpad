@@ -43,7 +43,7 @@ class TaskUpdater:
                     num = data["tasks"][update_date][n]
                     print(f"{n}. {num['task']}\n   result: {num['status']}\n   remark: {num['remark']}")
                     self.taskCount+=1
-                    return True
+                return True
                 
     def overwrite_task(self,tno,st,rm=' '): #takes the task number and the paramenter to overwrite.
         self.data['tasks'][self.updating_date][tno]['status']=st
@@ -116,5 +116,4 @@ class TaskUpdater:
 
 
 #update each user interactive loop's exception, in case if the user enters without typing any value.
-
-# edit the view task to update fucntion that is not showing all of the task of the entered date properly. (may it will use two loops nestedly)
+# update the string sparcing in the parameter to update funcion so that the user shouldn't have to alway type / . make it more simple to use.
