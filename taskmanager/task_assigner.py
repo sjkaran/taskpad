@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+
 class TaskAssigner:
     def __init__(self,data_handler):
         self.data_handler = data_handler
@@ -26,7 +27,7 @@ class TaskAssigner:
                         else:
                             data["tasks"][date_str][str(next_num + i)]={
                                 'task':tasks_input,
-                                'result':'PENDING',
+                                'status':'PENDING',
                                 'remark':''
                             }
                     return True

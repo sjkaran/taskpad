@@ -1,15 +1,7 @@
-from taskmanager import *
 class TaskClearer:
-    def __init__(self,data_handler,task_updater):
+    def __init__(self,data_handler):
         self.data_handler = data_handler
-        self.task_updater = task_updater
 
-    def check_data(self):
-        data=self.data_handler.view_data(False)
-        if len(data["tasks"])==0:
-            return False
-        else:
-            return True
 
     def date_wize_cleaner(self):
         data=self.data_handler.view_data(False)
@@ -71,51 +63,8 @@ class TaskClearer:
 
 
     def manual_cleaner(self):
-        # Clear/delete existing tasks with fresh data loading.
-
-        data = self.data_handler.view_data(False)
-
-        print("\nCurrent tasks: ")
-        self.data_handler.display_data(data)
-        
-        if len(data["tasks"])==0:
-            print("No tasks to clear!")
-            return
-        
-        try:
-            idx = self.task_updater.indexof("clear")
-            date_key = idx[0]
-            task_num = idx[1]
-
-            if date_key not in data["tasks"]:
-                print(f"No tasks found for date: {date_key}")
-                return
-            
-            if task_num not in data["tasks"][date_key]:
-                print(f"Task number {task_num} not found for date {date_key}.")
-                return 
-            
-            task_to_delete = data["tasks"][date_key][task_num]
-            print(f"\nTask to delete: {task_to_delete['task']}")
-
-            confirm = input("Are you sure you want to delete this task?  :").strip()
-            if confirm.lower().startswith('y'):
-                del data['tasks'][date_key][task_num]
-
-                if not data['tasks'][date_key]:
-                    del data['tasks'][date_key]
-                
-                if self.data_handler.upload_data(data):
-                    print("✅ Task cleared successfully!")
-                else:
-                    print("Error saving changes.")
-            else:
-                print("Task deletion cancelled.")
-
-        except KeyError as e:
-            print(f"Task not found: {e}")
-        except Exception as e:
-            print(f"Error detection in clearing tasks: {e}")
+       #mannually clears tasks by showing them and asking the task number.
+       pass
 
 
     def clean_ui_controler(self):
@@ -129,7 +78,7 @@ class TaskClearer:
                 inp = input("")
                 return inp
             except Exception as e:
-                print(f"{e}\nloc: {__class__.__name__}\{options.__name__}")
+                print(f"{e}\nloc: {__class__.__name__}/{options.__name__}")
 
         def final_clean_ui():            
             while True:
@@ -164,7 +113,7 @@ class TaskClearer:
                     break
         
         data = self.data_handler.view_data(False)
-        if self.check_data():
+        if self.data_handler.check_data():
             self.data_handler.display_data(self.data_handler.view_data(False))
             final_clean_ui()
         else:

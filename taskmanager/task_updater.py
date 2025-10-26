@@ -1,94 +1,120 @@
+from datetime import datetime , timedelta
+import re
 class TaskUpdater:
+
     def __init__(self,data_handler):
         self.data_handler = data_handler
-    
-    def indexof(self, funcName):
-       # get index inputs for various operation with improved validation.
-        def take_input(ref):
-            hir = ["date","num","task"]
-            user =[]
+        print(">>> UPDATE TASKS <<<".center(60))
+
+    def update_date(self):    #provides the final date
+        tries = 0
+        while True:
             try:
-                for i in range(hir.index(ref)):
-                    prompt = f"Enter the {hir[i]} of the task you want to {funcName}: "
-                    user_input = input(prompt).strip()
-                    if not user_input:
-                        print("Input cannot be empty. Please try again.")
-                        return take_input(ref)
-                    user.append(user_input)
-            except ValueError:
-                print("Invalid reference. Please try again.")
-                return take_input(ref)
+                indate = input("want to update today's task or yesterday's?\n").lower()
+                if 'q'==indate:
+                    return "q"
+                elif "tod" in indate or "today"==indate or '1'==indate:
+                    final_date = datetime.now().strftime("%Y-%m-%d")
+                    return final_date
+                elif "yes" in indate or "yesterday"==indate or '2'==indate:
+                    final_date = (datetime.now()-timedelta(days=1)).strftime("%Y-%m-%d")
+                    return final_date
+                else:
+                    if tries==3:
+                        print("sorry you tried 3 times but couldn't enterd 1 or 2 atleast.\nTry Later.")
+                        return "q"
+                    print("your input isn't valid. \n(Enter 1 for today and 2 for yesterday)")
+                    tries+=1
+            except KeyboardInterrupt:
+                print("Time out...!")
+                return "q"
             except Exception as e:
-                print(f"Unexpected error detected : {e}")
-                return take_input(ref)
-            return user
-        
-        if funcName == "update":
-            return take_input("task")
-        elif funcName == "assign":
-            return take_input("num")
-        elif funcName == "clear":
-            return take_input("task")
-
-    def update_task(self):
-        # update existing tasks with fresh data loading.
-        
-        data = self.data_handler.view_data(False)
-
-        #show current tasks first
-        print("\nCurrent tasks:")
-        print("-"*30)
-        self.data_handler.display_data(data)
-
-        if len(data["tasks"]) ==0:
-            print("No tasks to update!")
-            return
-        
-        try:
-            index = self.indexof("update")
-            date_key = index[0]
-            task_num = index[1]
-
-
-            if date_key not in data["tasks"]:
-                print(f"No tasks found for date: {date_key}")
-                return
+                print(f"{e}\noccured try again.")
+                return "q"
             
-            if task_num not in data["tasks"][date_key]:
-                print(f"Task number {task_num} not found for date {date_key}")
-                return
-            
-
-            current_task = data["tasks"][date_key][task_num]
-            print(f"\nCurrent task: {current_task['task']}")
-            print(f"Status: {current_task['result']}")
-            print(f"Remark: {current_task['remark']}")
-
-            while True:
+    def view_tasks_to_update(self,data,update_date):       # views the tasks of the entered date to update.
+        self.taskCount = 0
+        if self.data_handler.check_data():
+            if len(data["tasks"][update_date])==0:
+                print("NO tasks to update in your choosen day.")
+                return False
+            else:
+                for n in data["tasks"][update_date]:
+                    num = data["tasks"][update_date][n]
+                    print(f"{n}. {num['task']}\n   result: {num['status']}\n   remark: {num['remark']}")
+                    self.taskCount+=1
+                    return True
+                
+    def overwrite_task(self,tno,st,rm=' '): #takes the task number and the paramenter to overwrite.
+        self.data['tasks'][self.updating_date][tno]['status']=st
+        self.data['tasks'][self.updating_date][tno]['remark']=rm
+        self.data_handler.upload_data(self.data)
+        print(f"task no {tno} updated successfully")
+                
+    def parameter_of_task(self):#find out which task to update and what to update in that perticular task
+        pattern = r'^(\d)/(com\w*|incom\w*|notc\w*|pending|post\w*|trans\w*|fail\w*|done|succe\w*)/(.*)$'
+        print("enter your command to update the task among these:\ncommand format: serial_no_of_the_task/status/remark.")
+        def parsing():
                 try:
-                    yn = input("\nIs the task completed (y/n): ").strip()
-                    if yn.lower().startswith('y'):
-                        data['tasks'][date_key][task_num]['result'] = "COMPLETED"
-                        print("Task marked as completed.")
-                        break
-                    elif yn.lower().startswith('n'):
-                        new_remark = input("What is your remark for it: ").strip()
-                        data["tasks"][date_key][task_num]["remark"]=new_remark
-                        print("Task remark updated.")
+                    user = input("\t: ").lower()
+                    if user == 'q':         #can cut this off to connect the process directly.
+                        return 'q'
+                    else:
+                        match = re.match(pattern, user)
+                        if match:
+                            slno = match.group(1)
+                            status = match.group(2)
+                            remark = match.group(3) if match.group(3) else " "
+                            return [slno,status,remark]
+                        else:
+                            raise ValueError("failed to recognize input!")
+                except ValueError as v:
+                    print(v)
+                except Exception as e:
+                    print(e)
+
+        for i in range(self.taskCount):
+            inpList = parsing()
+            slno = inpList[0]
+            if inpList =='q':
+                break
+            elif inpList[1].startswith('com') or inpList[1].startswith('succe') or inpList[1]=='done':
+                status = "completed"
+            elif inpList[1].startswith('inc') or inpList[1].startswith('fail'):
+                status = "Failed"
+            elif inpList[1].startswith('pending') or inpList[1].startswith('notc'):
+                status = "Pending"
+            if inpList[2] == ' ':
+                self.overwrite_task(slno, status)
+            remark = inpList[2]
+            
+            self.overwrite_task(slno, status,remark)
+
+            
+
+
+    def update_task(self): # governs the setup.
+        self.data = self.data_handler.view_data(False)
+        try:
+            while True:
+                self.updating_date = self.update_date()
+                if self.updating_date == 'q':
+                    break
+                elif datetime.strptime(self.updating_date, "%Y-%m-%d"):
+                    if self.view_tasks_to_update(data=self.data,update_date=self.updating_date):
+                        self.parameter_of_task()
                         break
                     else:
-                        print("Please answer on Yes or No ")
-                except KeyboardInterrupt:
-                    print("\nOperation cancelled.")
-                    return
-                except Exception as e:
-                    print(f"Error occured: {e}")
-                    return
-                
-            if self.data_handler.upload_data(data):
-                print(f"Task updated successfully!")
-            else:
-                print("Error saving udated task.")
+                        print("Did you want to choose another date to update?")
+                else:
+                    print("there is some internal error....")
+                    break
 
         except Exception as e:
-            print(f"Error updating task : {e}")
+            print(f"Error occured .. {e}\nat {__class__.__name__}/{self.update_task.__name__}")
+                    
+
+
+#update each user interactive loop's exception, in case if the user enters without typing any value.
+
+# edit the view task to update fucntion that is not showing all of the task of the entered date properly. (may it will use two loops nestedly)

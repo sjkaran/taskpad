@@ -43,6 +43,13 @@ class DataHandler:
             print(f"Error: Invalid JSON in {self.filename}. loc: {self.view_data.__name__} / {self.__class__.__name__}")
             return {"tasks":{}}
         
+    def check_data(self):
+        data = self.view_data(False)
+        if len(data["tasks"])==0:
+            return False
+        else:
+            return True
+    
     def upload_data(self,newdata):
         try:
             with open(self.filename,"w")as file:
@@ -57,6 +64,6 @@ class DataHandler:
                 print(f"\nDate: {dates}")
                 for n in data["tasks"][dates]:
                     num = data["tasks"][dates][n]
-                    print(f"{n}. {num['task']}\n   result: {num['result']}\n   remark: {num['remark']}")
+                    print(f"{n}. {num['task']}\n   status: {num['status']}\n   remark: {num['remark']}")
         else:
             print("\nNo task found. start by assigning some tasks!")

@@ -9,7 +9,7 @@ def main():
         data_handler = DataHandler(filename="task_base.json")
         task_assigner = TaskAssigner(data_handler=data_handler)
         task_updater = TaskUpdater(data_handler=data_handler)
-        task_clearer = TaskClearer(data_handler=data_handler,task_updater=task_updater)
+        task_clearer = TaskClearer(data_handler=data_handler)
 
         ui_controller = UIController(data_handler, task_assigner, task_updater, task_clearer)
 
@@ -22,7 +22,7 @@ if __name__=="__main__":
     main()
 
 '''
-* add UI.
+* add UI.s
 
 * bug in the update task feature:
     if we update a task to completed mistakenly, it can't be redid as PENDING.
@@ -30,4 +30,5 @@ if __name__=="__main__":
     asking for dates before updating the task.
     should automatically label task as UNCOMPLETED or FAILED if the day of the task passed.
 
+* if the user mistakenly chooses an option there is no coming back, try to take an input q that returns back to the menu. 
 '''
