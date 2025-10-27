@@ -4,7 +4,6 @@ class TaskUpdater:
 
     def __init__(self,data_handler):
         self.data_handler = data_handler
-        print(">>> UPDATE TASKS <<<".center(60))
 
     def update_date(self):    #provides the final date
         tries = 0
@@ -94,6 +93,7 @@ class TaskUpdater:
 
 
     def update_task(self): # governs the setup.
+        print(">>> UPDATE TASKS <<<".center(60))
         self.data = self.data_handler.view_data(False)
         try:
             while True:
