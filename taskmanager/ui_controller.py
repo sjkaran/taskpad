@@ -1,10 +1,11 @@
 
 class UIController:
-    def __init__(self, data_handler, task_assigner, task_updater, task_clearer ):
+    def __init__(self, data_handler, task_assigner, task_updater, task_clearer, task_viewer ):
         self.data_handler = data_handler
         self.task_assigner = task_assigner
         self.task_updater = task_updater
         self.task_clearer = task_clearer
+        self.task_viewer = task_viewer
 
     def view_option(self):
         print("\n"+"-"*30)
@@ -31,7 +32,7 @@ class UIController:
                         case str() if inp =='1' or inp.startswith('v'):
                             print("\n📃 CURRENT TASKS: ")
                             print("-"*40)
-                            self.data_handler.view_data(True)
+                            self.task_viewer.view_tasks()
 
                         case str() if inp == '2' or inp.startswith('as'):
                             print("\n➕ ASSIGNING NEW TASKS:")

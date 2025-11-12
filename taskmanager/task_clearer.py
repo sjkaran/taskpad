@@ -30,7 +30,7 @@ class TaskClearer:
             dellist=[]
             for d in data["tasks"]:
                 for t in data["tasks"][d]:
-                    if data["tasks"][d][t]["result"]==remark:
+                    if data["tasks"][d][t]["status"]==remark:
                         dellist.append((d,t))
 
             if len(dellist)==0:
@@ -47,7 +47,7 @@ class TaskClearer:
 
 
         data=self.data_handler.view_data(False)
-        remarks=["COMPLETED","PENDING"]
+        remarks=["completed","pending"]
         try:
             inp=input(f"Clear tasks which are {remarks[0]} or {remarks[1]}    ")
             if inp.startswith('c'):

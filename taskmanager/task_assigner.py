@@ -27,7 +27,7 @@ class TaskAssigner:
                         else:
                             data["tasks"][date_str][str(next_num + i)]={
                                 'task':tasks_input,
-                                'status':'PENDING',
+                                'status':'pending',
                                 'remark':''
                             }
                     return True

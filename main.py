@@ -3,6 +3,7 @@ from taskmanager.task_assigner import TaskAssigner
 from taskmanager.task_updater import TaskUpdater
 from taskmanager.task_clearer import TaskClearer
 from taskmanager.ui_controller import UIController
+from taskmanager.task_viewer import TaskViewer
 
 def main():
     try:
@@ -10,8 +11,9 @@ def main():
         task_assigner = TaskAssigner(data_handler=data_handler)
         task_updater = TaskUpdater(data_handler=data_handler)
         task_clearer = TaskClearer(data_handler=data_handler)
+        task_viewer = TaskViewer(DataHandler=data_handler)
 
-        ui_controller = UIController(data_handler, task_assigner, task_updater, task_clearer)
+        ui_controller = UIController(data_handler, task_assigner, task_updater, task_clearer,task_viewer=task_viewer)
 
         ui_controller.control_unit()
 
@@ -24,11 +26,11 @@ if __name__=="__main__":
 '''
 * add UI.s
 
-* bug in the update task feature:
-    if we update a task to completed mistakenly, it can't be redid as PENDING.
-* update the update task part:
-    asking for dates before updating the task.
-    should automatically label task as UNCOMPLETED or FAILED if the day of the task passed.
+* bug in the update task feature. (if you entered to choose yesterday's task mistakenly then it's showing error.)
 
-* if the user mistakenly chooses an option there is no coming back, try to take an input q that returns back to the menu. 
+* the interface should show all the pending tasks in the time of running the interface. then ask for choice.
+
+* tasks should be automatically set to failed or should ask the user to determine a postponed date for the task one by one or else tasks should marked as faild.
+* failed task must stored in another file along with passed tasks to determine the pattern of success for future ai use.
+
 '''
