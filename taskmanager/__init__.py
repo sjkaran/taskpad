@@ -10,5 +10,6 @@ __all__ = [
     "TaskAssigner",
     "TaskUpdater",
     "TaskClearer",
-    "UIController"
+    "UIController",
+    "TaskViewer"
 ]

@@ -65,5 +65,7 @@ class DataHandler:
                 for n in data["tasks"][dates]:
                     num = data["tasks"][dates][n]
                     print(f"{n}. {num['task']}\n   status: {num['status']}\n   remark: {num['remark']}")
+                    return True
         else:
-            print("\nNo task found. start by assigning some tasks!")
+            print("\nNo task found.")
+            return False

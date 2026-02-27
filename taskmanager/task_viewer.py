@@ -3,6 +3,11 @@ class TaskViewer:
         self.DataHandler = DataHandler
 
     def view_tasks(self):
-        data = self.DataHandler.view_data(False)
-        self.DataHandler.display_data(data)
+        self.data = self.DataHandler.view_data(False)
+        if self.DataHandler.display_data(self.data):
+            print("Enter the Tasks first")
+        else:
+            pass
+
+
         
