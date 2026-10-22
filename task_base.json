@@ -1,3 +1,21 @@
 {
-    "tasks": {}
+  "tasks": {},
+  "2026-03-04": [
+    {
+      "id": "e4ddadef-61f8-47cd-8a5a-5575e46907a7",
+      "title": "Reading Book",
+      "status": "pending",
+      "remarks": "Sapiens - 5 pages and or Or Power of Habits 10 pages.",
+      "date": "2026-03-04",
+      "created_at": "2026-03-03 22:58"
+    },
+    {
+      "id": "078f1440-dd51-4574-9719-2c1ac9c252a1",
+      "title": "Reading Book",
+      "status": "pending",
+      "remarks": "Sapiens - 5 pages and or Or Power of Habits 10 pages.",
+      "date": "2026-03-04",
+      "created_at": "2026-03-03 22:58"
+    }
+  ]
 }
